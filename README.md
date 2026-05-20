@@ -2,7 +2,7 @@
 
 > **Dataiku DSS Plugin** · `v0.0.1` · Apache 2.0 License
 
-A Dataiku DSS plugin that lets users search for Python and R packages across all code environments available on an instance — directly from a webapp inside DSS. No more opening a terminal or asking an admin which environment has `scikit-learn 1.4` installed.
+A Dataiku DSS plugin that lets users search for Python and R packages across all code environments available on an instance — directly from a webapp inside DSS.
 
 ---
 
