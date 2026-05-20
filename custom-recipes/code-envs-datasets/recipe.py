@@ -27,43 +27,13 @@ from codeenvssearch.helpers import get_base_package
 code_envs_name = get_output_names_for_role('code_envs_output')[0]
 code_envs_ds = dataiku.Dataset(code_envs_name)
 
+packages_name, packages_ds = '', None
 if get_output_names_for_role('packages_output'):
     packages_name = get_output_names_for_role('packages_output')[0]
     packages_ds = dataiku.Dataset(packages_name)
 
 # Create Dataiku API client
 client = dataiku.api_client()
-
-# Create function to extract the base package name
-def get_base_package(package):
-    base_package = package
-
-    # Handle packages that are referenced with an URL or path
-    pattern = r"^(\/|http|git\+http|\-\-find)"
-    if re.match(pattern, package):
-        base_package = base_package.split('/')[-1]
-        if '-' in base_package:
-            base_package = base_package.split('-')[0].replace('_', '-')
-
-    # Extract the base package
-    # Extract the base package
-    pattern = r"^([\w\-\.\[\]]+)"
-    base_package = (
-        base_package
-        .strip()
-        .replace('"', '')
-        .replace("'", '')
-        .replace('#', '')
-        .replace('_', '-')
-    )
-
-    try:
-        base_package = re.match(pattern, base_package).group(1)
-    except:
-        print(f'Exception when packaged={base_package}')
-        base_package = None
-
-    return base_package
 
 # Get list of all code environments
 code_envs = client.list_code_envs(as_objects=True)
@@ -125,17 +95,7 @@ for c, code_env in enumerate(code_envs):
 
     code_envs_rows.append(row)
 
-# Build a list of all specified packages
-packages_rows = []
-for cer in code_envs_rows:
-    for package in cer.get('specified_packages', []):
-        row = dict(
-            language=cer.get('language', ''),
-            package=get_base_package(package)
-        )
-        packages_rows.append(row)
-
-# Store data in a dataframe
+# Store code environments data in a dataframe
 code_envs_df = pd.DataFrame(data=code_envs_rows)
 code_envs_df = (
     code_envs_df
@@ -143,17 +103,31 @@ code_envs_df = (
     .reset_index(drop=True)
 )
 
-packages_df = pd.DataFrame(data=packages_rows)
-packages_df = (
-    packages_df
-    .drop_duplicates()
-    .sort_values(by=['language', 'package'])
-    .reset_index(drop=True)
-)
-
-# Write recipe outputs
+# Write dataset
 code_envs_ds = dataiku.Dataset("code_environments")
 code_envs_ds.write_with_schema(code_envs_df)
 
-packages_ds = dataiku.Dataset("packages")
-packages_ds.write_with_schema(packages_df)
+# Continue if packages dataset was requested
+if packages_ds:
+    # Build a list of all specified packages
+    packages_rows = []
+    for cer in code_envs_rows:
+        for package in cer.get('specified_packages', []):
+            row = dict(
+                language=cer.get('language', ''),
+                package=get_base_package(package)
+            )
+            packages_rows.append(row)
+
+    # Store code environments data in a dataframe
+    packages_df = pd.DataFrame(data=packages_rows)
+    packages_df = (
+        packages_df
+        .drop_duplicates()
+        .sort_values(by=['language', 'package'])
+        .reset_index(drop=True)
+    )
+
+    # Write dataset
+    packages_ds = dataiku.Dataset("packages")
+    packages_ds.write_with_schema(packages_df)
