@@ -17,14 +17,6 @@
             "label": "Dataset",
             "description": "Select a dataset containing code environment data",
             "mandatory": true
-        },
-        {
-            "name": "input_column",
-            "type": "DATASET_COLUMN",
-            "datasetParamName": "code_envs_ds_name",
-            "label": "Column",
-            "description": "",
-            "mandatory": true
         }
     ],
     "roles": []
