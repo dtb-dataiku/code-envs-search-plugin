@@ -5,7 +5,7 @@ import re
 
 from codeenvssearch.helpers import get_base_package
 
-def get_code_envs_as_dataframe()
+def get_code_envs_as_dataframe():
     client = dataiku.api_client()
 
     # Get list of all code environments
