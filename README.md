@@ -31,16 +31,16 @@ This plugin solves that with a searchable webapp interface backed by the Dataiku
 
 ```
 code-envs-search-plugin/
-├── plugin.json                          # Plugin metadata
+├── plugin.json                                  # Plugin metadata
 ├── code-env/
-│   └── python/                          # Plugin's own managed code environment
+│   └── python/                                  # Plugin's own managed code environment
 ├── python-lib/
-│   └── codeenvssearch/                  # Shared Python library used by components
+│   └── codeenvssearch/                          # Shared Python library used by components
 ├── python-connectors/
-│   └── code-envs-search_code-envs/      # Dataset connector: lists code envs
-│   └── code-envs-search_code-envs/      # Dataset connector: lists packages
+│   └── code-envs-search_dataset-code-envs/      # Dataset connector: lists code envs
+│   └── code-envs-search_dataset-packages/       # Dataset connector: lists packages
 └── webapps/
-    └── webapp-search-code-envs/         # Interactive search webapp
+    └── webapp-search-code-envs/                 # Interactive search webapp
 ```
 
 ---
