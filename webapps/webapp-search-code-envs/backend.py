@@ -21,6 +21,9 @@ from codeenvssearch.helpers import get_base_package
 webapp_config = get_webapp_config()
 
 CODE_ENVS_DS_NAME = webapp_config.get('code_envs_ds_name')
+EXCLUDE_PLUGINS = webapp_config.get('exclude_plugins', True)
+EXCLUDE_SOLUTIONS = webapp_config.get('exclude_solutions', True)
+EXCLUDE_INTERNAL = webapp_config.get('exclude_internal', True)
 
 APP_HEADER = 'Search Code Environments'
 APP_SUBHEADER = 'Search for installed Python or R packages'
@@ -34,6 +37,19 @@ def get_code_envs():
     code_envs_df = dataiku.Dataset(CODE_ENVS_DS_NAME).get_dataframe()
     code_envs_df['specified_packages'] = code_envs_df['specified_packages'].apply(ast.literal_eval)
     code_envs_df['actual_packages'] = code_envs_df['actual_packages'].apply(ast.literal_eval)
+    
+    # Apply exclusions
+    exclusions = [EXCLUDE_PLUGINS, EXCLUDE_SOLUTIONS, EXCLUDE_INTERNAL]
+    patterns = [r'^plugin_.', r'^solution_.', r'^INTERNAL_.']
+    
+    if sum(exclusions) > 0:
+        all_filters = []
+        for e, exclusion in enumerate(exclusions):
+            if exclusion:
+                all_filters.append([re.match(patterns[e], n) != None for n in code_envs_df.name])
+
+        one_filter = [not any(z) for z in zip(*[f for f in all_filters])]
+        code_envs_df = code_envs_df.loc[one_filter, ]
     
     # Get list of all code environments
     return code_envs_df.to_dict('records')
