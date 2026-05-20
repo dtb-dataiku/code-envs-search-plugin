@@ -86,7 +86,7 @@ The plugin also includes a Python connector that produces a dataset of all code 
 1. In a DSS project, create a new dataset → **Plugin** → **Code Environments Search**
 2. Run the dataset to populate a full inventory of environments and packages
 3. Use downstream recipes to filter, join, or visualize as needed
-4. The webapp is designed to use this dataset
+4. It is **strongly recommended to add this your project first** because the webapp is designed to use this dataset
 
 ### Webapp: Search Code Environments
 
