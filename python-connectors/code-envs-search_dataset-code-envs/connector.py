@@ -3,7 +3,7 @@
 # import the base class for the custom dataset
 from six.moves import xrange
 from dataiku.connector import Connector
-from codeenvssearch.code_envs import get_code_envs_as_dataframe, get_packages_as_dataframe
+from codeenvssearch.code_envs import get_code_envs_as_dataframe
 
 """
 A custom Python dataset is a subclass of Connector.
