@@ -1,7 +1,7 @@
 // This file is the descriptor for webapp webapp-search-code-envs
 {
     "meta": {
-        "label": "Webapp search code envs",
+        "label": "Search Code Environments Webapp",
         "description": "",
         "icon": "fas fa-search"
     },
