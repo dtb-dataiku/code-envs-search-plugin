@@ -4,7 +4,7 @@
     "meta": {
         "label": "Code envs datasets",
         "description": "A recipe to a dataset of code environments and a dataset of installed packages",
-        "icon": "fas fa-puzzle-piece"
+        "icon": "far fa-file-code"
     },
 
     "kind": "PYTHON",
