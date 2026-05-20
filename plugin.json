@@ -3,7 +3,7 @@
     "version": "0.0.1",
     "meta": {
         "label": "Code Environment Search",
-        "description": "This plugin contains components to build a webapp for searching available packages in code environments",
+        "description": "This plugin contains components to build a webapp for searching available packages in code environments\n[README](https://github.com/dtb-dataiku/code-envs-search-plugin/tree/master)",
         "author": "darin.brown@dataiku.com",
         "icon": "fas fa-search",
         "recipesCategory": "",
