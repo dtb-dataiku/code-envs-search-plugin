@@ -92,7 +92,7 @@ The plugin also includes a Python connector that produces a dataset of all code 
 
 1. In any DSS project, go to **Webapps** and create a new webapp using the **Code Environment Search** template from this plugin.
 2. Launch the webapp.
-3. Type a package name(s) (e.g., `pandas`, `torch`, `tidyverse`) into the search box.
+3. Type package names (e.g., `pandas`, `torch`, `tidyverse`) into the search box.
 4. Results show all environments where that package is installed, along with the installed version.
 
 ---
