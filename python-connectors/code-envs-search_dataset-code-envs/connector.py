@@ -24,9 +24,6 @@ class MyConnector(Connector):
         """
         Connector.__init__(self, config, plugin_config)  # pass the parameters to the base class
 
-        # perform some more initialization
-        self.theparam1 = self.config.get("parameter1", "defaultValue")
-
     def get_read_schema(self):
         """
         Returns the schema that this connector generates when returning rows.
