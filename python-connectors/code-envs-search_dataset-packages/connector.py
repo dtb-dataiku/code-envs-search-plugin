@@ -62,8 +62,9 @@ class MyConnector(Connector):
 
         The dataset schema and partitioning are given for information purpose.
         """
-        for i in xrange(1,10):
-            yield { "first_col" : str(i), "my_string" : "Yes" }
+        packages_df = get_packages_as_dataframe()
+        for _, row in packages_df.iterrows():
+            yield row.to_dict()
 
 
     def get_writer(self, dataset_schema=None, dataset_partitioning=None,
