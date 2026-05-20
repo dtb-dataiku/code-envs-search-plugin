@@ -17,6 +17,37 @@
             "label": "Dataset",
             "description": "Select a dataset containing code environment data",
             "mandatory": true
+        },
+        {
+            "name": "edit_defaults",
+            "type": "BOOLEAN",
+            "label": "Edit default settings",
+            "defaultValue": false,
+            "mandatory": true
+        },
+        {
+            "name": "exclude_plugins",
+            "type": "BOOLEAN",
+            "label": "Exclude Plugin Code Environments",
+            "description": "Exclude code environments managed by plugins",
+            "defaultValue": true,
+            "visibilityCondition": "model.edit_defaults"
+        },
+        {
+            "name": "exclude_solutions",
+            "type": "BOOLEAN",
+            "label": "Exclude Solution Code Environments",
+            "description": "Exclude code environments managed by solutions",
+            "defaultValue": true,
+            "visibilityCondition": "model.edit_defaults"
+        },
+        {
+            "name": "exclude_internal",
+            "type": "BOOLEAN",
+            "label": "Exclude Internal Code Environments",
+            "description": "Exclude code environments for internal Dataiku-related features",
+            "defaultValue": true,
+            "visibilityCondition": "model.edit_defaults"
         }
     ],
     "roles": []
