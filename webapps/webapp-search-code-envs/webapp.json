@@ -2,7 +2,7 @@
 {
     "meta": {
         "label": "Search Code Environments Webapp",
-        "description": "",
+        "description": "Search for Python or R packages in code environments",
         "icon": "fas fa-search"
     },
     "baseType": "DASH", // WARNING: do not change
