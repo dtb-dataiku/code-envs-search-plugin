@@ -19,9 +19,9 @@
             "mandatory": true
         },
         {
-            "name": "edit_defaults",
+            "name": "view_settings",
             "type": "BOOLEAN",
-            "label": "Edit default settings",
+            "label": "View settings",
             "defaultValue": false,
             "mandatory": true
         },
@@ -31,7 +31,7 @@
             "label": "Exclude Plugin Code Environments",
             "description": "Exclude code environments managed by plugins",
             "defaultValue": true,
-            "visibilityCondition": "model.edit_defaults"
+            "visibilityCondition": "model.view_settings"
         },
         {
             "name": "exclude_solutions",
@@ -39,7 +39,7 @@
             "label": "Exclude Solution Code Environments",
             "description": "Exclude code environments managed by solutions",
             "defaultValue": true,
-            "visibilityCondition": "model.edit_defaults"
+            "visibilityCondition": "model.view_settings"
         },
         {
             "name": "exclude_internal",
@@ -47,7 +47,7 @@
             "label": "Exclude Internal Code Environments",
             "description": "Exclude code environments for internal Dataiku-related features",
             "defaultValue": true,
-            "visibilityCondition": "model.edit_defaults"
+            "visibilityCondition": "model.view_settings"
         }
     ],
     "roles": []
