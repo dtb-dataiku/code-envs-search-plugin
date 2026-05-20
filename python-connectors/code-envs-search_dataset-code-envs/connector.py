@@ -3,6 +3,7 @@
 # import the base class for the custom dataset
 from six.moves import xrange
 from dataiku.connector import Connector
+from codeenvssearch.code_envs import get_code_envs_as_dataframe, get_packages_as_dataframe
 
 """
 A custom Python dataset is a subclass of Connector.
@@ -58,8 +59,10 @@ class MyConnector(Connector):
 
         The dataset schema and partitioning are given for information purpose.
         """
-        for i in xrange(1,10):
-            yield { "first_col" : str(i), "my_string" : "Yes" }
+        
+        code_envs_df = get_code_envs_as_dataframe()
+        for _, row in code_envs_df.iterrows():
+            yield row.to_dict()
 
 
     def get_writer(self, dataset_schema=None, dataset_partitioning=None,
