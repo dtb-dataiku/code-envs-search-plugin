@@ -14,48 +14,24 @@ import dash_bootstrap_components as dbc
 
 from dash import dcc, html, Input, Output, State, ctx
 
+from codeenvssearch.helpers import get_base_package
+
 
 # CONFIGURATION
-APP_HEADER = 'Code Environment Search'
-APP_SUBHEADER = 'Search code environments'
+webapp_config = get_webapp_config()
+
+CODE_ENVS_DS_NAME = webapp_config.get('code_envs_ds_name')
+
+APP_HEADER = 'Search Code Environments'
+APP_SUBHEADER = 'Search for already installed packages'
 
 
 # HELPERS
-def get_base_package(package):
-    '''Extract the base package name.'''
-    
-    base_package = package
-    
-    # Handle packages that are referenced with an URL or path
-    pattern = r"^(\/|http|git\+http|\-\-find)"
-    if re.match(pattern, package):
-        base_package = base_package.split('/')[-1]
-        if '-' in base_package:
-            base_package = base_package.split('-')[0].replace('_', '-')
-    
-    # Extract the base package
-    pattern = r"^([\w\-\.\[\]]+)"
-    base_package = (
-        base_package
-        .strip()
-        .replace('"', '')
-        .replace("'", '')
-        .replace('#', '')
-        .replace('_', '-')
-    )
-    
-    try:
-        base_package = re.match(pattern, base_package).group(1)
-    except:
-        base_package = None
-
-    return base_package
-
 def get_code_envs():
     '''Get code environment data.'''
     
     # Get pre-built dataset with code environments data
-    code_envs_df = dataiku.Dataset('code_environments_filtered').get_dataframe()
+    code_envs_df = dataiku.Dataset(CODE_ENVS_DS_NAME).get_dataframe()
     code_envs_df['specified_packages'] = code_envs_df['specified_packages'].apply(ast.literal_eval)
     code_envs_df['actual_packages'] = code_envs_df['actual_packages'].apply(ast.literal_eval)
     
