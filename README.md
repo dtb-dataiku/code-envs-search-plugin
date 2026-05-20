@@ -37,7 +37,8 @@ code-envs-search-plugin/
 ├── python-lib/
 │   └── codeenvssearch/                  # Shared Python library used by components
 ├── python-connectors/
-│   └── code-envs-search_code-envs/      # Dataset connector: lists envs & packages
+│   └── code-envs-search_code-envs/      # Dataset connector: lists code envs
+│   └── code-envs-search_code-envs/      # Dataset connector: lists packages
 └── webapps/
     └── webapp-search-code-envs/         # Interactive search webapp
 ```
