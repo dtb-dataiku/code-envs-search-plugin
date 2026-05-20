@@ -23,7 +23,7 @@ webapp_config = get_webapp_config()
 CODE_ENVS_DS_NAME = webapp_config.get('code_envs_ds_name')
 
 APP_HEADER = 'Search Code Environments'
-APP_SUBHEADER = 'Search for already installed packages'
+APP_SUBHEADER = 'Search for installed Python or R packages'
 
 
 # HELPERS
