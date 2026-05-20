@@ -1,3 +1,5 @@
+import re
+
 # Create function to extract the base package name
 def get_base_package(package):
     base_package = package
